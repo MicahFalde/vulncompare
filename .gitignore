@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local scan results (raw Trivy output)
+data/scans/
+
+# Keep the cache file but not raw scans
+!data/scan_cache.json
+!data/catalogs/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Environment
+.env
+.env.local
