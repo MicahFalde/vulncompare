@@ -4,7 +4,7 @@ import streamlit as st
 from datetime import datetime, timezone
 from typing import List, Optional
 
-from src.models import ComparisonResult, ImageEntry, Vulnerability
+from src.models import ComparisonResult, ImageEntry, Vulnerability, MacroComparisonResult
 from src.catalog import get_all_image_entries, search_images, update_availability
 from src.comparison import run_comparison, export_comparison_csv, get_vulnerabilities_by_cve
 from src.docker_utils import check_docker_running, get_docker_login_status, docker_login
@@ -22,6 +22,11 @@ from src.cache import (
     get_last_updated,
     get_cache_timestamp,
     save_comparison_to_cache
+)
+from src.macro_comparison import (
+    compute_macro_comparison,
+    export_macro_comparison_csv,
+    export_macro_comparison_json
 )
 
 # Page config
@@ -63,6 +68,13 @@ if "comparison_logs" not in st.session_state:
     st.session_state.comparison_logs = []
 if "comparison_error" not in st.session_state:
     st.session_state.comparison_error = None
+# Macro comparison state
+if "macro_mode" not in st.session_state:
+    st.session_state.macro_mode = False
+if "selected_images" not in st.session_state:
+    st.session_state.selected_images = set()
+if "macro_result" not in st.session_state:
+    st.session_state.macro_result = None
 
 
 def add_log(msg: str):
@@ -78,7 +90,23 @@ def clear_logs():
 
 def render_header():
     """Render the minimal top header."""
-    st.title("VulnCompare")
+    deployed = is_deployed_mode()
+    cached_images = get_all_cached_images()
+
+    # Title row with mode toggle
+    col_title, col_toggle = st.columns([3, 1])
+    with col_title:
+        st.title("VulnCompare")
+    with col_toggle:
+        if deployed and len(cached_images) >= 2:
+            mode_label = "Macro View" if st.session_state.macro_mode else "Single View"
+            if st.button(mode_label, use_container_width=True):
+                st.session_state.macro_mode = not st.session_state.macro_mode
+                st.session_state.selected_images = set()
+                st.session_state.macro_result = None
+                st.session_state.comparison_result = None
+                st.rerun()
+
     st.caption("Compare vulnerability scan results between Chainguard and Docker Hardened Images")
 
     # Show last updated timestamp
@@ -97,12 +125,12 @@ def render_header():
         st.caption(f"Data last updated: {age_str}")
 
     # Settings expander (only show in local mode)
-    deployed = is_deployed_mode()
     if not deployed:
         with st.expander("Settings", expanded=False):
             render_auth_settings()
     else:
-        st.info("Viewing cached scan results. Live scanning requires local setup.")
+        mode_desc = "Macro comparison mode" if st.session_state.macro_mode else "Single image view"
+        st.info(f"{mode_desc} | {len(cached_images)} cached images | [github.com/MicahFalde/vulncompare](https://github.com/MicahFalde/vulncompare)")
 
 
 def render_auth_settings():
@@ -633,6 +661,300 @@ def render_status_footer():
         st.caption(" | ".join(status_parts))
 
 
+def render_macro_image_selector():
+    """Render multi-select image selector for macro comparison."""
+    st.markdown("### Select Images for Macro Comparison")
+
+    cached_images = get_all_cached_images()
+
+    # Search filter
+    search_query = st.text_input(
+        "Search",
+        placeholder="Filter images...",
+        label_visibility="collapsed",
+        key="macro_search"
+    )
+
+    if search_query:
+        cached_images = [img for img in cached_images if search_query.lower() in img.lower()]
+
+    # Selection controls
+    col_select_all, col_clear, col_count = st.columns([1, 1, 2])
+    with col_select_all:
+        if st.button("Select All", use_container_width=True):
+            st.session_state.selected_images = set(cached_images)
+            st.rerun()
+    with col_clear:
+        if st.button("Clear", use_container_width=True):
+            st.session_state.selected_images = set()
+            st.rerun()
+    with col_count:
+        selected_count = len(st.session_state.selected_images)
+        st.markdown(f"**{selected_count}** images selected")
+
+    st.divider()
+
+    # Image list with checkboxes
+    for image_name in sorted(cached_images):
+        col_check, col_name, col_timestamp = st.columns([1, 3, 2])
+
+        is_selected = image_name in st.session_state.selected_images
+
+        with col_check:
+            new_selected = st.checkbox("", value=is_selected, key=f"check_{image_name}", label_visibility="collapsed")
+            if new_selected and not is_selected:
+                st.session_state.selected_images.add(image_name)
+            elif not new_selected and is_selected:
+                st.session_state.selected_images.discard(image_name)
+
+        with col_name:
+            st.markdown(f"**{image_name}**")
+
+        with col_timestamp:
+            cached_time = get_cache_timestamp(image_name)
+            if cached_time:
+                if cached_time.tzinfo is None:
+                    cached_time = cached_time.replace(tzinfo=timezone.utc)
+                age_hours = (datetime.now(timezone.utc) - cached_time).total_seconds() / 3600
+                if age_hours < 24:
+                    st.caption(f"Scanned {int(age_hours)}h ago")
+                else:
+                    st.caption(f"Scanned {int(age_hours/24)}d ago")
+
+    # Compare button
+    st.divider()
+    if len(st.session_state.selected_images) >= 2:
+        if st.button("Generate Macro Comparison", type="primary", use_container_width=True):
+            selected_list = sorted(st.session_state.selected_images)
+            st.session_state.macro_result = compute_macro_comparison(selected_list)
+            st.rerun()
+    else:
+        st.info("Select at least 2 images to generate macro comparison")
+
+
+def render_macro_results():
+    """Render macro comparison results."""
+    macro = st.session_state.macro_result
+    if macro is None:
+        return
+
+    st.markdown(f"### Macro Comparison: {macro.total_images} Images")
+
+    # Error warning if any images had issues
+    if macro.images_with_errors:
+        with st.expander(f"Excluded images ({len(macro.images_with_errors)})", expanded=False):
+            for img in macro.images_with_errors:
+                st.warning(f"{img}: Scan error or missing data")
+
+    # Overall verdict
+    render_macro_verdict(macro)
+
+    # Aggregate severity breakdown
+    render_macro_severity_table(macro)
+
+    # Win/Loss scoreboard
+    render_macro_scoreboard(macro)
+
+    # Per-image breakdown table
+    render_per_image_table(macro)
+
+    # Export section
+    render_macro_exports(macro)
+
+    # New comparison button
+    st.divider()
+    if st.button("New Macro Comparison", use_container_width=True):
+        st.session_state.macro_result = None
+        st.session_state.selected_images = set()
+        st.rerun()
+
+
+def render_macro_verdict(macro: MacroComparisonResult):
+    """Render the overall macro verdict card."""
+    # Determine overall winner
+    if macro.cg_wins > macro.dhi_wins:
+        bg_color = "#d4edda"
+        border_color = "#28a745"
+        headline = f"Chainguard leads in {macro.cg_wins} of {macro.total_images} images"
+    elif macro.dhi_wins > macro.cg_wins:
+        bg_color = "#cce5ff"
+        border_color = "#007bff"
+        headline = f"Docker Hardened leads in {macro.dhi_wins} of {macro.total_images} images"
+    else:
+        bg_color = "#fff3cd"
+        border_color = "#ffc107"
+        headline = f"Vendors tied: Each leads in {macro.cg_wins} images"
+
+    bullets = [
+        f"Total vulnerabilities: Chainguard {macro.cg_total_vulns} vs DHI {macro.dhi_total_vulns}",
+        f"Chainguard wins: {macro.cg_wins} | DHI wins: {macro.dhi_wins} | Ties: {macro.ties}",
+        f"Critical severity wins: CG {macro.cg_critical_wins} vs DHI {macro.dhi_critical_wins}"
+    ]
+
+    st.markdown(f"""
+    <div style="background-color: {bg_color}; border-left: 4px solid {border_color};
+                padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+        <h4 style="margin: 0 0 0.5rem 0;">{headline}</h4>
+        <ul style="margin: 0; padding-left: 1.5rem;">
+            {"".join(f"<li>{bullet}</li>" for bullet in bullets)}
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+def render_macro_severity_table(macro: MacroComparisonResult):
+    """Render aggregate severity comparison table."""
+    st.markdown("**Aggregate Severity Breakdown**")
+
+    sev_colors = {
+        "CRITICAL": "#dc3545",
+        "HIGH": "#fd7e14",
+        "MEDIUM": "#ffc107",
+        "LOW": "#28a745"
+    }
+
+    # Header row
+    cols = st.columns([2, 2, 2, 2])
+    cols[0].markdown("**Severity**")
+    cols[1].markdown("**Chainguard**")
+    cols[2].markdown("**DHI**")
+    cols[3].markdown("**Difference**")
+
+    for sev in ["CRITICAL", "HIGH", "MEDIUM", "LOW"]:
+        cg_count = macro.cg_by_severity.get(sev, 0)
+        dhi_count = macro.dhi_by_severity.get(sev, 0)
+        diff = dhi_count - cg_count
+        color = sev_colors.get(sev, "#6c757d")
+
+        cols = st.columns([2, 2, 2, 2])
+        cols[0].markdown(f"<span style='color: {color};'>{sev}</span>", unsafe_allow_html=True)
+        cols[1].markdown(f"{cg_count}")
+        cols[2].markdown(f"{dhi_count}")
+        if diff > 0:
+            cols[3].markdown(f"<span style='color: #28a745;'>CG better by {diff}</span>", unsafe_allow_html=True)
+        elif diff < 0:
+            cols[3].markdown(f"<span style='color: #dc3545;'>DHI better by {-diff}</span>", unsafe_allow_html=True)
+        else:
+            cols[3].markdown("Equal")
+
+    # Total row
+    cols = st.columns([2, 2, 2, 2])
+    cols[0].markdown("**TOTAL**")
+    cols[1].markdown(f"**{macro.cg_total_vulns}**")
+    cols[2].markdown(f"**{macro.dhi_total_vulns}**")
+    diff = macro.dhi_total_vulns - macro.cg_total_vulns
+    if diff > 0:
+        cols[3].markdown(f"<span style='color: #28a745;'>**CG better by {diff}**</span>", unsafe_allow_html=True)
+    elif diff < 0:
+        cols[3].markdown(f"<span style='color: #dc3545;'>**DHI better by {-diff}**</span>", unsafe_allow_html=True)
+    else:
+        cols[3].markdown("**Equal**")
+
+
+def render_macro_scoreboard(macro: MacroComparisonResult):
+    """Render win/loss scoreboard visualization."""
+    st.markdown("**Win/Loss Scoreboard**")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        pct = f"{macro.cg_wins/macro.total_images*100:.0f}%" if macro.total_images > 0 else "0%"
+        st.metric(label="Chainguard Wins", value=macro.cg_wins, delta=pct)
+
+    with col2:
+        pct = f"{macro.dhi_wins/macro.total_images*100:.0f}%" if macro.total_images > 0 else "0%"
+        st.metric(label="DHI Wins", value=macro.dhi_wins, delta=pct)
+
+    with col3:
+        pct = f"{macro.ties/macro.total_images*100:.0f}%" if macro.total_images > 0 else "0%"
+        st.metric(label="Ties", value=macro.ties, delta=pct)
+
+    # Visual bar showing proportion
+    if macro.total_images > 0:
+        cg_pct = macro.cg_wins / macro.total_images * 100
+        dhi_pct = macro.dhi_wins / macro.total_images * 100
+        tie_pct = macro.ties / macro.total_images * 100
+
+        st.markdown(f"""
+        <div style="display: flex; height: 24px; border-radius: 4px; overflow: hidden; margin: 1rem 0;">
+            <div style="width: {cg_pct}%; background-color: #28a745;" title="Chainguard {cg_pct:.0f}%"></div>
+            <div style="width: {tie_pct}%; background-color: #ffc107;" title="Ties {tie_pct:.0f}%"></div>
+            <div style="width: {dhi_pct}%; background-color: #007bff;" title="DHI {dhi_pct:.0f}%"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;">
+            <span>Chainguard ({cg_pct:.0f}%)</span>
+            <span>Ties ({tie_pct:.0f}%)</span>
+            <span>DHI ({dhi_pct:.0f}%)</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+def render_per_image_table(macro: MacroComparisonResult):
+    """Render expandable per-image breakdown."""
+    with st.expander("Per-Image Details", expanded=False):
+        # Sort by total vulnerability difference (CG advantage first)
+        sorted_results = sorted(
+            macro.results,
+            key=lambda r: (r.dhi_result.total_vulns - r.cg_result.total_vulns),
+            reverse=True
+        )
+
+        # Header
+        cols = st.columns([3, 2, 2, 1])
+        cols[0].markdown("**Image**")
+        cols[1].markdown("**Chainguard**")
+        cols[2].markdown("**DHI**")
+        cols[3].markdown("**Winner**")
+
+        for result in sorted_results:
+            cg = result.cg_result
+            dhi = result.dhi_result
+            diff = dhi.total_vulns - cg.total_vulns
+
+            if diff > 0:
+                winner_icon = "CG"
+                winner_color = "#28a745"
+            elif diff < 0:
+                winner_icon = "DHI"
+                winner_color = "#007bff"
+            else:
+                winner_icon = "="
+                winner_color = "#ffc107"
+
+            cols = st.columns([3, 2, 2, 1])
+            cols[0].markdown(f"**{result.image_name}**")
+            cols[1].markdown(f"{cg.critical}C/{cg.high}H/{cg.medium}M/{cg.low}L")
+            cols[2].markdown(f"{dhi.critical}C/{dhi.high}H/{dhi.medium}M/{dhi.low}L")
+            cols[3].markdown(f"<span style='color: {winner_color}; font-weight: bold;'>{winner_icon}</span>", unsafe_allow_html=True)
+
+
+def render_macro_exports(macro: MacroComparisonResult):
+    """Render export buttons for macro comparison."""
+    st.markdown("**Export**")
+
+    col_csv, col_json = st.columns(2)
+
+    with col_csv:
+        csv_data = export_macro_comparison_csv(macro)
+        st.download_button(
+            "Export CSV",
+            data=csv_data,
+            file_name=f"vulncompare_macro_{macro.total_images}images_{datetime.now().strftime('%Y%m%d')}.csv",
+            mime="text/csv",
+            use_container_width=True
+        )
+
+    with col_json:
+        json_data = export_macro_comparison_json(macro)
+        st.download_button(
+            "Export JSON",
+            data=json_data,
+            file_name=f"vulncompare_macro_{macro.total_images}images_{datetime.now().strftime('%Y%m%d')}.json",
+            mime="application/json",
+            use_container_width=True
+        )
+
+
 def main():
     """Main application entry point."""
     render_header()
@@ -646,8 +968,13 @@ def main():
             st.error("Docker is not running. Start Docker first: `colima start`")
             return
 
-    # Main flow
-    if st.session_state.comparison_running and not deployed:
+    # Main flow - check for macro mode first
+    if deployed and st.session_state.macro_mode:
+        if st.session_state.macro_result is not None:
+            render_macro_results()
+        else:
+            render_macro_image_selector()
+    elif st.session_state.comparison_running and not deployed:
         render_comparison_progress()
     elif st.session_state.comparison_result is not None:
         render_results()

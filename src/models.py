@@ -118,3 +118,33 @@ class ComparisonResult:
         }
 
         return summary
+
+
+@dataclass
+class MacroComparisonResult:
+    """Aggregate comparison statistics across multiple images."""
+    image_names: List[str]
+    total_images: int
+    images_with_errors: List[str]
+
+    # Aggregate vulnerability counts
+    cg_total_vulns: int
+    dhi_total_vulns: int
+
+    # By severity
+    cg_by_severity: Dict[str, int]
+    dhi_by_severity: Dict[str, int]
+
+    # Win/loss statistics
+    cg_wins: int
+    dhi_wins: int
+    ties: int
+
+    # Per-severity wins
+    cg_critical_wins: int
+    dhi_critical_wins: int
+    cg_high_wins: int
+    dhi_high_wins: int
+
+    # Individual results for drill-down
+    results: List[ComparisonResult] = field(default_factory=list)
