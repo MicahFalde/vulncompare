@@ -52,5 +52,22 @@
   "node-exporter": false,
   "oauth2-proxy": false,
   "opensearch": false,
-  "opentelemetry-collector": false
+  "opentelemetry-collector": false,
+  "opentelemetry-operator": false,
+  "postgres": false,
+  "postgresql": false,
+  "prometheus": false,
+  "prometheus-alertmanager": false,
+  "reloader": false,
+  "tempo": false,
+  "thanos": false,
+  "traefik": false,
+  "trivy": false,
+  "uptime-kuma": false,
+  "valkey": true,
+  "vault": false,
+  "vault-k8s": false,
+  "vector": false,
+  "velero": false,
+  "zookeeper": false
 }

@@ -2,11 +2,11 @@
   "images": {
     "redis": {
       "image_name": "redis",
-      "scan_timestamp": "2026-01-21T18:40:41.776448",
+      "scan_timestamp": "2026-01-21T19:11:37.955569",
       "cg_result": {
         "image": "cgr.dev/chainguard/redis:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T18:40:38.046607",
+        "scan_time": "2026-01-21T19:11:37.871314",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -19,7 +19,7 @@
       "dhi_result": {
         "image": "dhi.io/redis:7",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T18:40:41.775884",
+        "scan_time": "2026-01-21T19:11:37.954875",
         "total_vulns": 15,
         "critical": 0,
         "high": 1,
@@ -187,11 +187,11 @@
     },
     "nginx": {
       "image_name": "nginx",
-      "scan_timestamp": "2026-01-21T18:40:47.096958",
+      "scan_timestamp": "2026-01-21T19:11:37.792117",
       "cg_result": {
         "image": "cgr.dev/chainguard/nginx:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T18:40:43.545599",
+        "scan_time": "2026-01-21T19:11:37.703420",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -204,7 +204,7 @@
       "dhi_result": {
         "image": "dhi.io/nginx:1",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T18:40:47.096280",
+        "scan_time": "2026-01-21T19:11:37.791376",
         "total_vulns": 18,
         "critical": 0,
         "high": 1,
@@ -399,7 +399,1293 @@
         "TEMP-0517018-A83CE6"
       ],
       "common_cves": []
+    },
+    "busybox": {
+      "image_name": "busybox",
+      "scan_timestamp": "2026-01-21T19:12:33.844261",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/busybox:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:33.767849",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/busybox:1",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:33.843523",
+        "total_vulns": 17,
+        "critical": 0,
+        "high": 2,
+        "medium": 5,
+        "low": 10,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2023-39810",
+            "severity": "HIGH",
+            "package": "busybox",
+            "installed_version": "1:1.37.0-6+b5",
+            "fixed_version": null,
+            "title": "busybox: CPIO command of Busybox allows attackers to execute a directory traversal",
+            "description": "An issue in the CPIO command of Busybox v1.33.2 allows attackers to execute a directory traversal."
+          },
+          {
+            "cve_id": "CVE-2023-42366",
+            "severity": "MEDIUM",
+            "package": "busybox",
+            "installed_version": "1:1.37.0-6+b5",
+            "fixed_version": null,
+            "title": "busybox: A heap-buffer-overflow",
+            "description": "A heap-buffer-overflow was discovered in BusyBox v.1.36.1 in the next_token function at awk.c:1159."
+          },
+          {
+            "cve_id": "CVE-2024-58251",
+            "severity": "MEDIUM",
+            "package": "busybox",
+            "installed_version": "1:1.37.0-6+b5",
+            "fixed_version": null,
+            "title": "In netstat in BusyBox through 1.37.0, local users can launch of networ ...",
+            "description": "In netstat in BusyBox through 1.37.0, local users can launch of network application with an argv[0] containing an ANSI terminal escape sequence, leading to a denial of service (terminal locked up) when netstat is used by a victim."
+          },
+          {
+            "cve_id": "CVE-2025-60876",
+            "severity": "MEDIUM",
+            "package": "busybox",
+            "installed_version": "1:1.37.0-6+b5",
+            "fixed_version": null,
+            "title": "busybox: BusyBox wget: HTTP request-target allows header injection",
+            "description": "BusyBox wget thru 1.3.7 accepted raw CR (0x0D)/LF (0x0A) and other C0 control bytes in the HTTP request-target (path/query), allowing the request line to be split and attacker-controlled headers to be injected. To preserve the HTTP/1.1 request-line shape METHOD SP request-target SP HTTP/1.1, a raw space (0x20) in the request-target must also be rejected (clients should use %20)."
+          },
+          {
+            "cve_id": "CVE-2018-1000500",
+            "severity": "LOW",
+            "package": "busybox",
+            "installed_version": "1:1.37.0-6+b5",
+            "fixed_version": null,
+            "title": "busybox: wget: Missing SSL certificate validation",
+            "description": "Busybox contains a Missing SSL certificate validation vulnerability in The \"busybox wget\" applet that can result in arbitrary code execution. This attack appear to be exploitable via Simply download any file over HTTPS using \"busybox wget https://compromised-domain.com/important-file\"."
+          },
+          {
+            "cve_id": "CVE-2025-46394",
+            "severity": "LOW",
+            "package": "busybox",
+            "installed_version": "1:1.37.0-6+b5",
+            "fixed_version": null,
+            "title": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hid ...",
+            "description": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hidden from a listing through the use of terminal escape sequences."
+          },
+          {
+            "cve_id": "CVE-2026-0861",
+            "severity": "HIGH",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: Integer overflow in memalign leads to heap corruption",
+            "description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+          },
+          {
+            "cve_id": "CVE-2025-15281",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+            "description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+          },
+          {
+            "cve_id": "CVE-2026-0915",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: glibc: Information disclosure via zero-valued network query",
+            "description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+          },
+          {
+            "cve_id": "CVE-2019-1010022",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: stack guard protection bypass",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010024",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: ASLR bypass using cache of thread stack and heap",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: information disclosure of heap addresses of pthread_created thread",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12+deb13u1",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+          },
+          {
+            "cve_id": "CVE-2025-6141",
+            "severity": "LOW",
+            "package": "libtinfo6",
+            "installed_version": "6.5+20250216-2",
+            "fixed_version": null,
+            "title": "gnu-ncurses: ncurses Stack Buffer Overflow",
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component."
+          }
+        ]
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [
+        "CVE-2010-4756",
+        "CVE-2018-1000500",
+        "CVE-2018-20796",
+        "CVE-2019-1010022",
+        "CVE-2019-1010023",
+        "CVE-2019-1010024",
+        "CVE-2019-1010025",
+        "CVE-2019-9192",
+        "CVE-2023-39810",
+        "CVE-2023-42366",
+        "CVE-2024-58251",
+        "CVE-2025-15281",
+        "CVE-2025-46394",
+        "CVE-2025-60876",
+        "CVE-2025-6141",
+        "CVE-2026-0861",
+        "CVE-2026-0915"
+      ],
+      "common_cves": []
+    },
+    "cosign": {
+      "image_name": "cosign",
+      "scan_timestamp": "2026-01-21T19:12:33.995919",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/cosign:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:33.919487",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/cosign:2",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:33.994960",
+        "total_vulns": 4,
+        "critical": 0,
+        "high": 0,
+        "medium": 4,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2026-23991",
+            "severity": "MEDIUM",
+            "package": "github.com/theupdateframework/go-tuf",
+            "installed_version": "v0.7.0",
+            "fixed_version": null,
+            "title": "go-tuf affected by client DoS via malformed server response",
+            "description": "# Security Disclosure: Client DoS via malformed server response\n\n## Summary\n\nIf the TUF repository (or any of its mirrors) returns invalid TUF metadata JSON (valid JSON but not well formed TUF metadata), the client will panic _during parsing_, causing a DoS. The panic happens before any signature is validated. This means that a compromised repository/mirror/cache can DoS clients without having access to any signing key.\n\n## Impact \n\nClient crashes upon receiving and parsing malformed TUF metadata. This can cause long running services to enter an restart/crash loop.\n\n## Workarounds\n\nNone currently. \n\n## Affected code\n\nThe `metadata.checkType` function did not properly type assert the (untrusted) input causing it to panic on malformed data."
+          },
+          {
+            "cve_id": "CVE-2026-23992",
+            "severity": "MEDIUM",
+            "package": "github.com/theupdateframework/go-tuf",
+            "installed_version": "v0.7.0",
+            "fixed_version": null,
+            "title": "go-tuf improperly validates the configured threshold for delegations",
+            "description": "# Security Disclosure: Improper validation of configured threshold for delegations\n\n## Summary\n\nA compromised or misconfigured TUF repository can have the configured value of signature thresholds set to 0, which effectively disables signature verification. \n\n## Impact\n\nUnathorized modification to TUF metadata files is possible at rest, or during transit as no integrity checks are made.\n\n## Patches\n\nUpgrade to v2.3.1\n\n## Workarounds\n\nAlways make sure that the TUF metadata roles are configured with a threshold of at least 1.\n\n## Affected code:\n\nThe `metadata.VerifyDelegate` did not verify the configured threshold prior to comparison. This means that a misconfigured TUF repository could disable the signature verification by setting the threshold to 0, or a negative value (and so always make the signature threshold computation to pass)."
+          },
+          {
+            "cve_id": "CVE-2026-23991",
+            "severity": "MEDIUM",
+            "package": "github.com/theupdateframework/go-tuf/v2",
+            "installed_version": "v2.3.0",
+            "fixed_version": "2.3.1",
+            "title": "go-tuf affected by client DoS via malformed server response",
+            "description": "# Security Disclosure: Client DoS via malformed server response\n\n## Summary\n\nIf the TUF repository (or any of its mirrors) returns invalid TUF metadata JSON (valid JSON but not well formed TUF metadata), the client will panic _during parsing_, causing a DoS. The panic happens before any signature is validated. This means that a compromised repository/mirror/cache can DoS clients without having access to any signing key.\n\n## Impact \n\nClient crashes upon receiving and parsing malformed TUF metadata. This can cause long running services to enter an restart/crash loop.\n\n## Workarounds\n\nNone currently. \n\n## Affected code\n\nThe `metadata.checkType` function did not properly type assert the (untrusted) input causing it to panic on malformed data."
+          },
+          {
+            "cve_id": "CVE-2026-23992",
+            "severity": "MEDIUM",
+            "package": "github.com/theupdateframework/go-tuf/v2",
+            "installed_version": "v2.3.0",
+            "fixed_version": "2.3.1",
+            "title": "go-tuf improperly validates the configured threshold for delegations",
+            "description": "# Security Disclosure: Improper validation of configured threshold for delegations\n\n## Summary\n\nA compromised or misconfigured TUF repository can have the configured value of signature thresholds set to 0, which effectively disables signature verification. \n\n## Impact\n\nUnathorized modification to TUF metadata files is possible at rest, or during transit as no integrity checks are made.\n\n## Patches\n\nUpgrade to v2.3.1\n\n## Workarounds\n\nAlways make sure that the TUF metadata roles are configured with a threshold of at least 1.\n\n## Affected code:\n\nThe `metadata.VerifyDelegate` did not verify the configured threshold prior to comparison. This means that a misconfigured TUF repository could disable the signature verification by setting the threshold to 0, or a negative value (and so always make the signature threshold computation to pass)."
+          }
+        ]
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [
+        "CVE-2026-23991",
+        "CVE-2026-23992"
+      ],
+      "common_cves": []
+    },
+    "curl": {
+      "image_name": "curl",
+      "scan_timestamp": "2026-01-21T19:12:34.151940",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/curl:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:34.072585",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/curl:8",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:34.150857",
+        "total_vulns": 45,
+        "critical": 0,
+        "high": 1,
+        "medium": 3,
+        "low": 38,
+        "unknown": 3,
+        "error": null,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2025-10966",
+            "severity": "LOW",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "curl: Curl missing SFTP host verification with wolfSSH backend",
+            "description": "curl's code for managing SSH connections when SFTP was done using the wolfSSH\npowered backend was flawed and missed host verification mechanisms.\n\nThis prevents curl from detecting MITM attackers and more."
+          },
+          {
+            "cve_id": "CVE-2025-14017",
+            "severity": "LOW",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "curl: curl: Security bypass due to global TLS option changes in multi-threaded LDAPS transfers",
+            "description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl,\nchanging TLS options in one thread would inadvertently change them globally\nand therefore possibly also affect other concurrently setup transfers.\n\nDisabling certificate verification for a specific transfer could\nunintentionally disable the feature for other threads as well."
+          },
+          {
+            "cve_id": "CVE-2025-14524",
+            "severity": "LOW",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that  ...",
+            "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a cross-protocol redirect to a second URL that uses an IMAP, LDAP,\nPOP3 or SMTP scheme, curl might wrongly pass on the bearer token to the new\ntarget host."
+          },
+          {
+            "cve_id": "CVE-2025-14819",
+            "severity": "LOW",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When doing TLS related transfers with reused easy or multi handles and ...",
+            "description": "When doing TLS related transfers with reused easy or multi handles and\naltering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentally\nreuse a CA store cached in memory for which the partial chain option was\nreversed. Contrary to the user's wishes and expectations. This could make\nlibcurl find and accept a trust chain that it otherwise would not."
+          },
+          {
+            "cve_id": "CVE-2025-15079",
+            "severity": "LOW",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When doing SSH-based transfers using either SCP or SFTP, and setting t ...",
+            "description": "When doing SSH-based transfers using either SCP or SFTP, and setting the\nknown_hosts file, libcurl could still mistakenly accept connecting to hosts\n*not present* in the specified file if they were added as recognized in the\nlibssh *global* known_hosts file."
+          },
+          {
+            "cve_id": "CVE-2025-15224",
+            "severity": "LOW",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When doing SSH-based transfers using either SCP or SFTP, and asked to  ...",
+            "description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do\npublic key authentication, curl would wrongly still ask and authenticate using\na locally running SSH agent."
+          },
+          {
+            "cve_id": "CVE-2025-13034",
+            "severity": "UNKNOWN",
+            "package": "curl",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedp ...",
+            "description": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey`\nwith the curl tool,curl should check the public key of the server certificate\nto verify the peer.\n\nThis check was skipped in a certain condition that would then make curl allow\nthe connection without performing the proper check, thus not noticing a\npossible impostor. To skip this check, the connection had to be done with QUIC\nwith ngtcp2 built to use GnuTLS and the user had to explicitly disable the\nstandard certificate verification."
+          },
+          {
+            "cve_id": "CVE-2026-0861",
+            "severity": "HIGH",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: Integer overflow in memalign leads to heap corruption",
+            "description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+          },
+          {
+            "cve_id": "CVE-2025-15281",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+            "description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+          },
+          {
+            "cve_id": "CVE-2026-0915",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glibc: Information disclosure via zero-valued network query",
+            "description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+          },
+          {
+            "cve_id": "CVE-2019-1010022",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: stack guard protection bypass",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010024",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: ASLR bypass using cache of thread stack and heap",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: information disclosure of heap addresses of pthread_created thread",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+          },
+          {
+            "cve_id": "CVE-2025-10966",
+            "severity": "LOW",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "curl: Curl missing SFTP host verification with wolfSSH backend",
+            "description": "curl's code for managing SSH connections when SFTP was done using the wolfSSH\npowered backend was flawed and missed host verification mechanisms.\n\nThis prevents curl from detecting MITM attackers and more."
+          },
+          {
+            "cve_id": "CVE-2025-14017",
+            "severity": "LOW",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "curl: curl: Security bypass due to global TLS option changes in multi-threaded LDAPS transfers",
+            "description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl,\nchanging TLS options in one thread would inadvertently change them globally\nand therefore possibly also affect other concurrently setup transfers.\n\nDisabling certificate verification for a specific transfer could\nunintentionally disable the feature for other threads as well."
+          },
+          {
+            "cve_id": "CVE-2025-14524",
+            "severity": "LOW",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that  ...",
+            "description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a cross-protocol redirect to a second URL that uses an IMAP, LDAP,\nPOP3 or SMTP scheme, curl might wrongly pass on the bearer token to the new\ntarget host."
+          },
+          {
+            "cve_id": "CVE-2025-14819",
+            "severity": "LOW",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When doing TLS related transfers with reused easy or multi handles and ...",
+            "description": "When doing TLS related transfers with reused easy or multi handles and\naltering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentally\nreuse a CA store cached in memory for which the partial chain option was\nreversed. Contrary to the user's wishes and expectations. This could make\nlibcurl find and accept a trust chain that it otherwise would not."
+          },
+          {
+            "cve_id": "CVE-2025-15079",
+            "severity": "LOW",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When doing SSH-based transfers using either SCP or SFTP, and setting t ...",
+            "description": "When doing SSH-based transfers using either SCP or SFTP, and setting the\nknown_hosts file, libcurl could still mistakenly accept connecting to hosts\n*not present* in the specified file if they were added as recognized in the\nlibssh *global* known_hosts file."
+          },
+          {
+            "cve_id": "CVE-2025-15224",
+            "severity": "LOW",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When doing SSH-based transfers using either SCP or SFTP, and asked to  ...",
+            "description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do\npublic key authentication, curl would wrongly still ask and authenticate using\na locally running SSH agent."
+          },
+          {
+            "cve_id": "CVE-2025-13034",
+            "severity": "UNKNOWN",
+            "package": "libcurl4t64",
+            "installed_version": "8.14.1-2+deb13u2",
+            "fixed_version": null,
+            "title": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedp ...",
+            "description": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey`\nwith the curl tool,curl should check the public key of the server certificate\nto verify the peer.\n\nThis check was skipped in a certain condition that would then make curl allow\nthe connection without performing the proper check, thus not noticing a\npossible impostor. To skip this check, the connection had to be done with QUIC\nwith ngtcp2 built to use GnuTLS and the user had to explicitly disable the\nstandard certificate verification."
+          },
+          {
+            "cve_id": "CVE-2011-3389",
+            "severity": "LOW",
+            "package": "libgnutls30t64",
+            "installed_version": "3.8.9-3",
+            "fixed_version": null,
+            "title": "HTTPS: block-wise chosen-plaintext attack against SSL/TLS (BEAST)",
+            "description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Explorer, Mozilla Firefox, Google Chrome, Opera, and other products, encrypts data by using CBC mode with chained initialization vectors, which allows man-in-the-middle attackers to obtain plaintext HTTP headers via a blockwise chosen-boundary attack (BCBA) on an HTTPS session, in conjunction with JavaScript code that uses (1) the HTML5 WebSocket API, (2) the Java URLConnection API, or (3) the Silverlight WebClient API, aka a \"BEAST\" attack."
+          },
+          {
+            "cve_id": "CVE-2025-9820",
+            "severity": "UNKNOWN",
+            "package": "libgnutls30t64",
+            "installed_version": "3.8.9-3",
+            "fixed_version": "3.8.9-3+deb13u1",
+            "title": "[GNUTLS-SA-2025-11-18]",
+            "description": ""
+          },
+          {
+            "cve_id": "CVE-2018-5709",
+            "severity": "LOW",
+            "package": "libgssapi-krb5-2",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+            "description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+          },
+          {
+            "cve_id": "CVE-2024-26458",
+            "severity": "LOW",
+            "package": "libgssapi-krb5-2",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+          },
+          {
+            "cve_id": "CVE-2024-26461",
+            "severity": "LOW",
+            "package": "libgssapi-krb5-2",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+          },
+          {
+            "cve_id": "CVE-2018-5709",
+            "severity": "LOW",
+            "package": "libk5crypto3",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+            "description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+          },
+          {
+            "cve_id": "CVE-2024-26458",
+            "severity": "LOW",
+            "package": "libk5crypto3",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+          },
+          {
+            "cve_id": "CVE-2024-26461",
+            "severity": "LOW",
+            "package": "libk5crypto3",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+          },
+          {
+            "cve_id": "CVE-2018-5709",
+            "severity": "LOW",
+            "package": "libkrb5-3",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+            "description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+          },
+          {
+            "cve_id": "CVE-2024-26458",
+            "severity": "LOW",
+            "package": "libkrb5-3",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+          },
+          {
+            "cve_id": "CVE-2024-26461",
+            "severity": "LOW",
+            "package": "libkrb5-3",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+          },
+          {
+            "cve_id": "CVE-2018-5709",
+            "severity": "LOW",
+            "package": "libkrb5support0",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+            "description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+          },
+          {
+            "cve_id": "CVE-2024-26458",
+            "severity": "LOW",
+            "package": "libkrb5support0",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+          },
+          {
+            "cve_id": "CVE-2024-26461",
+            "severity": "LOW",
+            "package": "libkrb5support0",
+            "installed_version": "1.21.3-5",
+            "fixed_version": null,
+            "title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+            "description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+          },
+          {
+            "cve_id": "CVE-2015-3276",
+            "severity": "LOW",
+            "package": "libldap2",
+            "installed_version": "2.6.10+dfsg-1",
+            "fixed_version": null,
+            "title": "openldap: incorrect multi-keyword mode cipherstring parsing",
+            "description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors."
+          },
+          {
+            "cve_id": "CVE-2017-14159",
+            "severity": "LOW",
+            "package": "libldap2",
+            "installed_version": "2.6.10+dfsg-1",
+            "fixed_version": null,
+            "title": "openldap: Privilege escalation via PID file manipulation",
+            "description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript."
+          },
+          {
+            "cve_id": "CVE-2017-17740",
+            "severity": "LOW",
+            "package": "libldap2",
+            "installed_version": "2.6.10+dfsg-1",
+            "fixed_version": null,
+            "title": "openldap: contrib/slapd-modules/nops/nops.c attempts to free stack buffer allowing remote attackers to cause a denial of service",
+            "description": "contrib/slapd-modules/nops/nops.c in OpenLDAP through 2.4.45, when both the nops module and the memberof overlay are enabled, attempts to free a buffer that was allocated on the stack, which allows remote attackers to cause a denial of service (slapd crash) via a member MODDN operation."
+          },
+          {
+            "cve_id": "CVE-2020-15719",
+            "severity": "LOW",
+            "package": "libldap2",
+            "installed_version": "2.6.10+dfsg-1",
+            "fixed_version": null,
+            "title": "openldap: Certificate validation incorrectly matches name against CN-ID",
+            "description": "libldap in certain third-party OpenLDAP packages has a certificate-validation flaw when the third-party package is asserting RFC6125 support. It considers CN even when there is a non-matching subjectAltName (SAN). This is fixed in, for example, openldap-2.4.46-10.el8 in Red Hat Enterprise Linux."
+          },
+          {
+            "cve_id": "CVE-2026-22185",
+            "severity": "LOW",
+            "package": "libldap2",
+            "installed_version": "2.6.10+dfsg-1",
+            "fixed_version": null,
+            "title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
+            "description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition."
+          },
+          {
+            "cve_id": "CVE-2025-13151",
+            "severity": "MEDIUM",
+            "package": "libtasn1-6",
+            "installed_version": "4.20.0-2",
+            "fixed_version": null,
+            "title": "libtasn1: libtasn1: Denial of Service via stack-based buffer overflow in asn1_expend_octet_string",
+            "description": "Stack-based buffer overflow in libtasn1 version: v4.20.0. The function fails to validate the size of input data resulting in a buffer overflow in asn1_expend_octet_string."
+          },
+          {
+            "cve_id": "CVE-2025-6141",
+            "severity": "LOW",
+            "package": "libtinfo6",
+            "installed_version": "6.5+20250216-2",
+            "fixed_version": null,
+            "title": "gnu-ncurses: ncurses Stack Buffer Overflow",
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component."
+          }
+        ]
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [
+        "CVE-2010-4756",
+        "CVE-2011-3389",
+        "CVE-2015-3276",
+        "CVE-2017-14159",
+        "CVE-2017-17740",
+        "CVE-2018-20796",
+        "CVE-2018-5709",
+        "CVE-2019-1010022",
+        "CVE-2019-1010023",
+        "CVE-2019-1010024",
+        "CVE-2019-1010025",
+        "CVE-2019-9192",
+        "CVE-2020-15719",
+        "CVE-2024-26458",
+        "CVE-2024-26461",
+        "CVE-2025-10966",
+        "CVE-2025-13034",
+        "CVE-2025-13151",
+        "CVE-2025-14017",
+        "CVE-2025-14524",
+        "CVE-2025-14819",
+        "CVE-2025-15079",
+        "CVE-2025-15224",
+        "CVE-2025-15281",
+        "CVE-2025-6141",
+        "CVE-2025-9820",
+        "CVE-2026-0861",
+        "CVE-2026-0915",
+        "CVE-2026-22185"
+      ],
+      "common_cves": []
+    },
+    "haproxy": {
+      "image_name": "haproxy",
+      "scan_timestamp": "2026-01-21T19:12:34.308413",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/haproxy:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:34.229810",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/haproxy:3",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:34.307749",
+        "total_vulns": 10,
+        "critical": 0,
+        "high": 1,
+        "medium": 2,
+        "low": 7,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": [
+          {
+            "cve_id": "CVE-2026-0861",
+            "severity": "HIGH",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: Integer overflow in memalign leads to heap corruption",
+            "description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+          },
+          {
+            "cve_id": "CVE-2025-15281",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+            "description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+          },
+          {
+            "cve_id": "CVE-2026-0915",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glibc: Information disclosure via zero-valued network query",
+            "description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+          },
+          {
+            "cve_id": "CVE-2019-1010022",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: stack guard protection bypass",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010024",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: ASLR bypass using cache of thread stack and heap",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: information disclosure of heap addresses of pthread_created thread",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+          }
+        ]
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [
+        "CVE-2010-4756",
+        "CVE-2018-20796",
+        "CVE-2019-1010022",
+        "CVE-2019-1010023",
+        "CVE-2019-1010024",
+        "CVE-2019-1010025",
+        "CVE-2019-9192",
+        "CVE-2025-15281",
+        "CVE-2026-0861",
+        "CVE-2026-0915"
+      ],
+      "common_cves": []
+    },
+    "helm": {
+      "image_name": "helm",
+      "scan_timestamp": "2026-01-21T19:12:34.455085",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/helm:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:34.378697",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/helm:3",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:34.454423",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [],
+      "common_cves": []
+    },
+    "kubectl": {
+      "image_name": "kubectl",
+      "scan_timestamp": "2026-01-21T19:12:34.599513",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/kubectl:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:34.523598",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/kubectl:1",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:34.598723",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [],
+      "common_cves": []
+    },
+    "mongodb": {
+      "image_name": "mongodb",
+      "scan_timestamp": "2026-01-21T19:12:36.177203",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/mongodb:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:34.677118",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/mongodb:8",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:36.176224",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": "Failed to pull image: Failed to pull dhi.io/mongodb:8: Error response from daemon: no matching manifest for linux/arm64/v8 in the manifest list entries: no match for platform in manifest: not found\n",
+        "vulnerabilities": []
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [],
+      "common_cves": []
+    },
+    "valkey": {
+      "image_name": "valkey",
+      "scan_timestamp": "2026-01-21T19:12:38.436534",
+      "cg_result": {
+        "image": "cgr.dev/chainguard/valkey:latest",
+        "vendor": "chainguard",
+        "scan_time": "2026-01-21T19:12:36.269491",
+        "total_vulns": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": []
+      },
+      "dhi_result": {
+        "image": "dhi.io/valkey:8",
+        "vendor": "dhi",
+        "scan_time": "2026-01-21T19:12:38.435477",
+        "total_vulns": 28,
+        "critical": 0,
+        "high": 2,
+        "medium": 4,
+        "low": 22,
+        "unknown": 0,
+        "error": null,
+        "vulnerabilities": [
+          {
+            "cve_id": "TEMP-0841856-B18BAF",
+            "severity": "LOW",
+            "package": "bash",
+            "installed_version": "5.2.37-2+b5",
+            "fixed_version": null,
+            "title": "[Privilege escalation possible to other user than root]",
+            "description": ""
+          },
+          {
+            "cve_id": "CVE-2017-18018",
+            "severity": "LOW",
+            "package": "coreutils",
+            "installed_version": "9.7-3",
+            "fixed_version": null,
+            "title": "coreutils: race condition vulnerability in chown and chgrp",
+            "description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition."
+          },
+          {
+            "cve_id": "CVE-2025-5278",
+            "severity": "LOW",
+            "package": "coreutils",
+            "installed_version": "9.7-3",
+            "fixed_version": null,
+            "title": "coreutils: Heap Buffer Under-Read in GNU Coreutils sort via Key Specification",
+            "description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data."
+          },
+          {
+            "cve_id": "CVE-2026-0861",
+            "severity": "HIGH",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: Integer overflow in memalign leads to heap corruption",
+            "description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+          },
+          {
+            "cve_id": "CVE-2025-15281",
+            "severity": "MEDIUM",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+            "description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+          },
+          {
+            "cve_id": "CVE-2026-0915",
+            "severity": "MEDIUM",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glibc: Information disclosure via zero-valued network query",
+            "description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+          },
+          {
+            "cve_id": "CVE-2019-1010022",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: stack guard protection bypass",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010024",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: ASLR bypass using cache of thread stack and heap",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: information disclosure of heap addresses of pthread_created thread",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "severity": "LOW",
+            "package": "libc-bin",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+          },
+          {
+            "cve_id": "CVE-2026-0861",
+            "severity": "HIGH",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: Integer overflow in memalign leads to heap corruption",
+            "description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+          },
+          {
+            "cve_id": "CVE-2025-15281",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+            "description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+          },
+          {
+            "cve_id": "CVE-2026-0915",
+            "severity": "MEDIUM",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glibc: Information disclosure via zero-valued network query",
+            "description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+          },
+          {
+            "cve_id": "CVE-2010-4756",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+            "description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+          },
+          {
+            "cve_id": "CVE-2018-20796",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+          },
+          {
+            "cve_id": "CVE-2019-1010022",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: stack guard protection bypass",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010023",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+            "description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010024",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: ASLR bypass using cache of thread stack and heap",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+          },
+          {
+            "cve_id": "CVE-2019-1010025",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: information disclosure of heap addresses of pthread_created thread",
+            "description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+          },
+          {
+            "cve_id": "CVE-2019-9192",
+            "severity": "LOW",
+            "package": "libc6",
+            "installed_version": "2.41-12",
+            "fixed_version": null,
+            "title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+            "description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+          },
+          {
+            "cve_id": "CVE-2013-4392",
+            "severity": "LOW",
+            "package": "libsystemd0",
+            "installed_version": "257.9-1~deb13u1",
+            "fixed_version": null,
+            "title": "systemd: TOCTOU race condition when updating file permissions and SELinux security contexts",
+            "description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux security contexts for arbitrary files via a symlink attack on unspecified files."
+          },
+          {
+            "cve_id": "CVE-2023-31437",
+            "severity": "LOW",
+            "package": "libsystemd0",
+            "installed_version": "257.9-1~deb13u1",
+            "fixed_version": null,
+            "title": "An issue was discovered in systemd 253. An attacker can modify a seale ...",
+            "description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+          },
+          {
+            "cve_id": "CVE-2023-31438",
+            "severity": "LOW",
+            "package": "libsystemd0",
+            "installed_version": "257.9-1~deb13u1",
+            "fixed_version": null,
+            "title": "An issue was discovered in systemd 253. An attacker can truncate a sea ...",
+            "description": "An issue was discovered in systemd 253. An attacker can truncate a sealed log file and then resume log sealing such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+          },
+          {
+            "cve_id": "CVE-2023-31439",
+            "severity": "LOW",
+            "package": "libsystemd0",
+            "installed_version": "257.9-1~deb13u1",
+            "fixed_version": null,
+            "title": "An issue was discovered in systemd 253. An attacker can modify the con ...",
+            "description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+          },
+          {
+            "cve_id": "CVE-2025-6141",
+            "severity": "LOW",
+            "package": "libtinfo6",
+            "installed_version": "6.5+20250216-2",
+            "fixed_version": null,
+            "title": "gnu-ncurses: ncurses Stack Buffer Overflow",
+            "description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component."
+          }
+        ]
+      },
+      "cg_unique_cves": [],
+      "dhi_unique_cves": [
+        "CVE-2010-4756",
+        "CVE-2013-4392",
+        "CVE-2017-18018",
+        "CVE-2018-20796",
+        "CVE-2019-1010022",
+        "CVE-2019-1010023",
+        "CVE-2019-1010024",
+        "CVE-2019-1010025",
+        "CVE-2019-9192",
+        "CVE-2023-31437",
+        "CVE-2023-31438",
+        "CVE-2023-31439",
+        "CVE-2025-15281",
+        "CVE-2025-5278",
+        "CVE-2025-6141",
+        "CVE-2026-0861",
+        "CVE-2026-0915",
+        "TEMP-0841856-B18BAF"
+      ],
+      "common_cves": []
     }
   },
-  "last_updated": "2026-01-21T18:40:47.096978"
+  "last_updated": "2026-01-21T19:12:38.436556"
 }

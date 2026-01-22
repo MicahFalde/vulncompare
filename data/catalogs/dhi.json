@@ -1,7 +1,7 @@
 {
-  "prometheus-config-reloader": false,
+  "prometheus-config-reloader": true,
   "prometheus-node-exporter": false,
-  "prometheus-operator": false,
+  "prometheus-operator": true,
   "prometheus-pushgateway": false,
   "redis": true,
   "alertmanager": false,
@@ -52,5 +52,22 @@
   "node-exporter": false,
   "oauth2-proxy": true,
   "opensearch": false,
-  "opentelemetry-collector": true
+  "opentelemetry-collector": true,
+  "opentelemetry-operator": true,
+  "postgres": false,
+  "postgresql": false,
+  "prometheus": true,
+  "prometheus-alertmanager": false,
+  "reloader": false,
+  "tempo": false,
+  "thanos": true,
+  "traefik": true,
+  "trivy": true,
+  "uptime-kuma": true,
+  "valkey": true,
+  "vault": true,
+  "vault-k8s": true,
+  "vector": true,
+  "velero": true,
+  "zookeeper": false
 }
