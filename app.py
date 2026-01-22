@@ -4,7 +4,7 @@ import streamlit as st
 from datetime import datetime, timezone
 from typing import List, Optional
 
-from src.models import ComparisonResult, ImageEntry, Vulnerability, MacroComparisonResult
+from src.models import ComparisonResult, ImageEntry, ScanResult, Vulnerability, MacroComparisonResult
 from src.catalog import get_all_image_entries, search_images, update_availability
 from src.comparison import run_comparison, export_comparison_csv, get_vulnerabilities_by_cve
 from src.docker_utils import check_docker_running, get_docker_login_status, docker_login
@@ -411,6 +411,9 @@ def render_results():
     # Drill down expanders
     render_drill_down(result)
 
+    # Technical details for copy-paste
+    render_technical_details(result)
+
     # Export actions
     render_exports(result, recommendation)
 
@@ -583,6 +586,114 @@ def render_vuln_table(vulns: List[Vulnerability]):
 
     if len(vulns) > 50:
         st.caption(f"Showing first 50 of {len(vulns)} vulnerabilities")
+
+
+def format_scan_for_copy(scan: ScanResult) -> str:
+    """Format a single vendor's scan results as copy-paste text."""
+    from src.recommendation import sort_vulnerabilities
+
+    lines = []
+    lines.append("=" * 80)
+    lines.append(f"VULNERABILITY SCAN: {scan.image}")
+    lines.append(f"Scanned: {scan.scan_time.strftime('%Y-%m-%d %H:%M:%S')} UTC")
+    lines.append("=" * 80)
+    lines.append("")
+
+    # Summary line
+    summary = f"SUMMARY: {scan.total_vulns} vulnerabilities ({scan.critical} Critical, {scan.high} High, {scan.medium} Medium, {scan.low} Low)"
+    lines.append(summary)
+    lines.append("")
+
+    if scan.total_vulns == 0:
+        lines.append("NO VULNERABILITIES FOUND")
+        lines.append("=" * 80)
+        return "\n".join(lines)
+
+    # Group vulnerabilities by severity
+    vulns_by_severity = {"CRITICAL": [], "HIGH": [], "MEDIUM": [], "LOW": [], "UNKNOWN": []}
+    for v in scan.vulnerabilities:
+        sev = v.severity.upper() if v.severity else "UNKNOWN"
+        if sev in vulns_by_severity:
+            vulns_by_severity[sev].append(v)
+        else:
+            vulns_by_severity["UNKNOWN"].append(v)
+
+    # Output each severity group
+    for sev in ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNKNOWN"]:
+        vulns = vulns_by_severity[sev]
+        if not vulns:
+            continue
+
+        vulns = sort_vulnerabilities(vulns)
+        lines.append(f"{sev} SEVERITY ({len(vulns)}):")
+        lines.append("-" * 80)
+
+        for v in vulns:
+            fixed = v.fixed_version if v.fixed_version else "N/A"
+            lines.append(f"{v.cve_id} | {v.package} | {v.installed_version} | Fixed: {fixed}")
+            if v.title:
+                lines.append(f"  {v.title}")
+
+        lines.append("")
+
+    lines.append("=" * 80)
+    return "\n".join(lines)
+
+
+def format_comparison_for_copy(result: ComparisonResult) -> str:
+    """Format both vendor scans as copy-paste text for comparison."""
+    lines = []
+
+    # Chainguard section
+    if result.cg_result:
+        lines.append(format_scan_for_copy(result.cg_result))
+    else:
+        lines.append("=" * 80)
+        lines.append("CHAINGUARD SCAN: Not available")
+        lines.append("=" * 80)
+
+    lines.append("")
+    lines.append("--- vs ---")
+    lines.append("")
+
+    # DHI section
+    if result.dhi_result:
+        lines.append(format_scan_for_copy(result.dhi_result))
+    else:
+        lines.append("=" * 80)
+        lines.append("DOCKER HARDENED IMAGES SCAN: Not available")
+        lines.append("=" * 80)
+
+    return "\n".join(lines)
+
+
+def render_technical_details(result: ComparisonResult):
+    """Render technical details section with copy-paste formatted output."""
+    st.markdown("**Technical Details (Copy-Paste)**")
+
+    with st.expander("View Full Vulnerability Details", expanded=False):
+        # Create tabs for different views
+        tab_cg, tab_dhi, tab_both = st.tabs(["Chainguard", "Docker Hardened", "Both (Comparison)"])
+
+        with tab_cg:
+            if result.cg_result:
+                cg_text = format_scan_for_copy(result.cg_result)
+                st.code(cg_text, language="text")
+            else:
+                st.info("Chainguard scan not available")
+
+        with tab_dhi:
+            if result.dhi_result:
+                dhi_text = format_scan_for_copy(result.dhi_result)
+                st.code(dhi_text, language="text")
+            else:
+                st.info("Docker Hardened scan not available")
+
+        with tab_both:
+            both_text = format_comparison_for_copy(result)
+            st.code(both_text, language="text")
+
+        st.caption("Select the text in the code block above and copy (Cmd+C / Ctrl+C)")
 
 
 def render_exports(result: ComparisonResult, recommendation):
