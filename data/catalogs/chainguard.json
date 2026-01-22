@@ -54,8 +54,8 @@
   "opensearch": false,
   "opentelemetry-collector": false,
   "opentelemetry-operator": false,
-  "postgres": false,
-  "postgresql": false,
+  "postgres": true,
+  "postgresql": true,
   "prometheus": false,
   "prometheus-alertmanager": false,
   "reloader": false,
@@ -69,5 +69,16 @@
   "vault-k8s": false,
   "vector": false,
   "velero": false,
-  "zookeeper": false
+  "zookeeper": false,
+  "aspnet-runtime": true,
+  "aspnetcore": true,
+  "dotnet": true,
+  "dotnet-sdk": true,
+  "go": true,
+  "jdk": true,
+  "node": true,
+  "php": true,
+  "python": true,
+  "ruby": true,
+  "rust": true
 }

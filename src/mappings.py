@@ -7,8 +7,8 @@ from typing import Dict, List, Optional, Tuple
 IMAGE_MAPPINGS: Dict[str, Tuple[Optional[str], Optional[str]]] = {
     # Databases
     "redis": ("redis", "redis"),
-    "postgres": ("postgresql", "postgresql"),
-    "postgresql": ("postgresql", "postgresql"),
+    "postgres": ("postgres", "postgres"),
+    "postgresql": ("postgres", "postgres"),
     "mongodb": ("mongodb", "mongodb"),
     "mongo": ("mongodb", "mongodb"),
     "mysql": ("mysql", "mysql"),
@@ -20,6 +20,19 @@ IMAGE_MAPPINGS: Dict[str, Tuple[Optional[str], Optional[str]]] = {
     "influxdb": ("influxdb", "influxdb"),
     "etcd": ("etcd", "etcd"),
     "zookeeper": ("zookeeper", "zookeeper"),
+
+    # Languages / Runtimes
+    "node": ("node", "node"),
+    "dotnet-sdk": ("dotnet-sdk", "dotnet"),
+    "dotnet": ("dotnet-sdk", "dotnet"),
+    "aspnet-runtime": ("aspnet-runtime", "aspnetcore"),
+    "aspnetcore": ("aspnet-runtime", "aspnetcore"),
+    "python": ("python", "python"),
+    "go": ("go", "go"),
+    "rust": ("rust", "rust"),
+    "ruby": ("ruby", "ruby"),
+    "php": ("php", "php"),
+    "jdk": ("jdk", "eclipse-temurin"),
 
     # Networking
     "nginx": ("nginx", "nginx"),
@@ -107,13 +120,14 @@ IMAGE_MAPPINGS: Dict[str, Tuple[Optional[str], Optional[str]]] = {
 
 # DHI uses version tags, not 'latest'. Map canonical names to DHI tags.
 # Format: canonical_name -> dhi_tag (CG uses 'latest' for all)
+# Note: DHI tags often include distro suffix like "-debian13-dev" or "-alpine"
 DHI_TAGS: Dict[str, str] = {
-    # Databases - use major version
-    "redis": "7",
-    "postgres": "17",
-    "postgresql": "17",
-    "mongodb": "8",
-    "mongo": "8",
+    # Databases
+    "redis": "8-debian13-dev",
+    "postgres": "18-alpine3.22-dev",
+    "postgresql": "18-alpine3.22-dev",
+    "mongodb": "8.2-debian13-dev",
+    "mongo": "8.2-debian13-dev",
     "mysql": "8",
     "clickhouse": "24",
     "elasticsearch": "8",
@@ -123,9 +137,21 @@ DHI_TAGS: Dict[str, str] = {
     "influxdb": "2",
     "etcd": "3",
     "zookeeper": "3",
+    # Languages / Runtimes
+    "node": "25-debian13-sfw-ent-dev",
+    "dotnet-sdk": "10-sdk",
+    "dotnet": "10-sdk",
+    "aspnet-runtime": "10",
+    "aspnetcore": "10",
+    "python": "3",
+    "go": "1",
+    "rust": "1",
+    "ruby": "3",
+    "php": "8",
+    "jdk": "21",
     # Networking
     "nginx": "1",
-    "haproxy": "3",
+    "haproxy": "3-debian13-dev",
     "traefik": "3",
     "envoy": "1",
     "caddy": "2",
@@ -202,6 +228,10 @@ IMAGE_CATEGORIES: Dict[str, List[str]] = {
         "redis", "postgres", "postgresql", "mongodb", "mongo", "mysql",
         "clickhouse", "elasticsearch", "opensearch", "memcached", "valkey",
         "influxdb", "etcd", "zookeeper"
+    ],
+    "language": [
+        "node", "dotnet-sdk", "dotnet", "aspnet-runtime", "aspnetcore",
+        "python", "go", "rust", "ruby", "php", "jdk"
     ],
     "networking": [
         "nginx", "haproxy", "traefik", "envoy", "caddy", "coredns",
