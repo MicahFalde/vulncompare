@@ -1,7 +1,7 @@
 """VulnCompare: Compare vulnerability scans between Chainguard and Docker Hardened Images."""
 
 import streamlit as st
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 
 from src.models import ComparisonResult, ImageEntry, Vulnerability
@@ -84,7 +84,10 @@ def render_header():
     # Show last updated timestamp
     last_updated = get_last_updated()
     if last_updated:
-        age_hours = (datetime.now() - last_updated).total_seconds() / 3600
+        # Make timezone-aware if naive (assume UTC)
+        if last_updated.tzinfo is None:
+            last_updated = last_updated.replace(tzinfo=timezone.utc)
+        age_hours = (datetime.now(timezone.utc) - last_updated).total_seconds() / 3600
         if age_hours < 1:
             age_str = f"{int(age_hours * 60)} minutes ago"
         elif age_hours < 24:
@@ -221,7 +224,10 @@ def render_cached_image_row(image_name: str):
     with col_timestamp:
         cached_time = get_cache_timestamp(image_name)
         if cached_time:
-            age_hours = (datetime.now() - cached_time).total_seconds() / 3600
+            # Make timezone-aware if naive (assume UTC)
+            if cached_time.tzinfo is None:
+                cached_time = cached_time.replace(tzinfo=timezone.utc)
+            age_hours = (datetime.now(timezone.utc) - cached_time).total_seconds() / 3600
             if age_hours < 24:
                 st.caption(f"Scanned {int(age_hours)}h ago")
             else:

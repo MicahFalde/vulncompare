@@ -2,11 +2,11 @@
   "images": {
     "redis": {
       "image_name": "redis",
-      "scan_timestamp": "2026-01-21T19:11:37.955569",
+      "scan_timestamp": "2026-01-22T00:49:03.682427+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/redis:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:11:37.871314",
+        "scan_time": "2026-01-21T19:49:03.583037",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -19,7 +19,7 @@
       "dhi_result": {
         "image": "dhi.io/redis:7",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:11:37.954875",
+        "scan_time": "2026-01-21T19:49:03.681437",
         "total_vulns": 15,
         "critical": 0,
         "high": 1,
@@ -187,11 +187,11 @@
     },
     "nginx": {
       "image_name": "nginx",
-      "scan_timestamp": "2026-01-21T19:11:37.792117",
+      "scan_timestamp": "2026-01-22T00:49:03.844907+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/nginx:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:11:37.703420",
+        "scan_time": "2026-01-21T19:49:03.764148",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -204,7 +204,7 @@
       "dhi_result": {
         "image": "dhi.io/nginx:1",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:11:37.791376",
+        "scan_time": "2026-01-21T19:49:03.844202",
         "total_vulns": 18,
         "critical": 0,
         "high": 1,
@@ -402,11 +402,11 @@
     },
     "busybox": {
       "image_name": "busybox",
-      "scan_timestamp": "2026-01-21T19:12:33.844261",
+      "scan_timestamp": "2026-01-22T00:49:03.995701+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/busybox:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:33.767849",
+        "scan_time": "2026-01-21T19:49:03.917519",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -419,7 +419,7 @@
       "dhi_result": {
         "image": "dhi.io/busybox:1",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:33.843523",
+        "scan_time": "2026-01-21T19:49:03.994904",
         "total_vulns": 17,
         "critical": 0,
         "high": 2,
@@ -607,11 +607,11 @@
     },
     "cosign": {
       "image_name": "cosign",
-      "scan_timestamp": "2026-01-21T19:12:33.995919",
+      "scan_timestamp": "2026-01-22T00:49:04.156773+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/cosign:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:33.919487",
+        "scan_time": "2026-01-21T19:49:04.072864",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -624,7 +624,7 @@
       "dhi_result": {
         "image": "dhi.io/cosign:2",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:33.994960",
+        "scan_time": "2026-01-21T19:49:04.155629",
         "total_vulns": 4,
         "critical": 0,
         "high": 0,
@@ -680,11 +680,11 @@
     },
     "curl": {
       "image_name": "curl",
-      "scan_timestamp": "2026-01-21T19:12:34.151940",
+      "scan_timestamp": "2026-01-22T00:49:04.325504+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/curl:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:34.072585",
+        "scan_time": "2026-01-21T19:49:04.239688",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -697,7 +697,7 @@
       "dhi_result": {
         "image": "dhi.io/curl:8",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:34.150857",
+        "scan_time": "2026-01-21T19:49:04.324436",
         "total_vulns": 45,
         "critical": 0,
         "high": 1,
@@ -1149,11 +1149,11 @@
     },
     "haproxy": {
       "image_name": "haproxy",
-      "scan_timestamp": "2026-01-21T19:12:34.308413",
+      "scan_timestamp": "2026-01-22T00:49:04.484653+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/haproxy:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:34.229810",
+        "scan_time": "2026-01-21T19:49:04.405459",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1166,7 +1166,7 @@
       "dhi_result": {
         "image": "dhi.io/haproxy:3",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:34.307749",
+        "scan_time": "2026-01-21T19:49:04.483909",
         "total_vulns": 10,
         "critical": 0,
         "high": 1,
@@ -1284,11 +1284,11 @@
     },
     "helm": {
       "image_name": "helm",
-      "scan_timestamp": "2026-01-21T19:12:34.455085",
+      "scan_timestamp": "2026-01-22T00:49:04.636644+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/helm:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:34.378697",
+        "scan_time": "2026-01-21T19:49:04.556411",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1301,7 +1301,7 @@
       "dhi_result": {
         "image": "dhi.io/helm:3",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:34.454423",
+        "scan_time": "2026-01-21T19:49:04.635932",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1317,11 +1317,11 @@
     },
     "kubectl": {
       "image_name": "kubectl",
-      "scan_timestamp": "2026-01-21T19:12:34.599513",
+      "scan_timestamp": "2026-01-22T00:49:04.786969+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/kubectl:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:34.523598",
+        "scan_time": "2026-01-21T19:49:04.709595",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1334,7 +1334,7 @@
       "dhi_result": {
         "image": "dhi.io/kubectl:1",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:34.598723",
+        "scan_time": "2026-01-21T19:49:04.786154",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1350,11 +1350,11 @@
     },
     "mongodb": {
       "image_name": "mongodb",
-      "scan_timestamp": "2026-01-21T19:12:36.177203",
+      "scan_timestamp": "2026-01-22T00:49:06.543520+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/mongodb:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:34.677118",
+        "scan_time": "2026-01-21T19:49:04.867862",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1367,7 +1367,7 @@
       "dhi_result": {
         "image": "dhi.io/mongodb:8",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:36.176224",
+        "scan_time": "2026-01-21T19:49:06.542885",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1383,11 +1383,11 @@
     },
     "valkey": {
       "image_name": "valkey",
-      "scan_timestamp": "2026-01-21T19:12:38.436534",
+      "scan_timestamp": "2026-01-22T00:49:06.722506+00:00",
       "cg_result": {
         "image": "cgr.dev/chainguard/valkey:latest",
         "vendor": "chainguard",
-        "scan_time": "2026-01-21T19:12:36.269491",
+        "scan_time": "2026-01-21T19:49:06.628917",
         "total_vulns": 0,
         "critical": 0,
         "high": 0,
@@ -1400,7 +1400,7 @@
       "dhi_result": {
         "image": "dhi.io/valkey:8",
         "vendor": "dhi",
-        "scan_time": "2026-01-21T19:12:38.435477",
+        "scan_time": "2026-01-21T19:49:06.721598",
         "total_vulns": 28,
         "critical": 0,
         "high": 2,
@@ -1687,5 +1687,5 @@
       "common_cves": []
     }
   },
-  "last_updated": "2026-01-21T19:12:38.436556"
+  "last_updated": "2026-01-22T00:49:06.722534+00:00"
 }

@@ -2,7 +2,7 @@
 
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -34,7 +34,7 @@ def load_cache() -> Dict:
 def save_cache(cache: Dict):
     """Save the scan cache to disk."""
     cache_path = get_cache_path()
-    cache["last_updated"] = datetime.now().isoformat()
+    cache["last_updated"] = datetime.now(timezone.utc).isoformat()
     with open(cache_path, "w") as f:
         json.dump(cache, f, indent=2)
 
@@ -155,7 +155,7 @@ def _comparison_to_dict(result: ComparisonResult) -> Dict:
     """Convert ComparisonResult to dictionary."""
     return {
         "image_name": result.image_name,
-        "scan_timestamp": datetime.now().isoformat(),
+        "scan_timestamp": datetime.now(timezone.utc).isoformat(),
         "cg_result": _scan_to_dict(result.cg_result),
         "dhi_result": _scan_to_dict(result.dhi_result),
         "cg_unique_cves": result.cg_unique_cves,
